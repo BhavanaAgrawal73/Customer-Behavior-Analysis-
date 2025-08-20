@@ -6,7 +6,7 @@ This repository contains a Seaborn scatterplot visualization analyzing customer 
 Email: 21f2000670@ds.study.iitm.ac.in
 
 ## Files
-- chart.py – Python script to generate the scatterplot
+- chart.py – Python script to generate the barplot
 - chart.png – Generated visualization (512x512 pixels)
 
 ## Instructions
