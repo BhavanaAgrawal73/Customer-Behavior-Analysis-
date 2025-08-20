@@ -1,44 +1,45 @@
 # chart.py
+
+# Import required libraries
 import seaborn as sns
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-# Set professional Seaborn style
-sns.set_style("whitegrid")
-sns.set_context("talk")  # Presentation-ready text sizes
+# Generate synthetic data for product performance
+np.random.seed(42)  # For reproducibility
+products = ["Product A", "Product B", "Product C", "Product D", "Product E"]
+performance = np.random.randint(50, 100, size=len(products))
 
-# Generate synthetic data
-np.random.seed(42)
-num_customers = 100
-acquisition_cost = np.random.normal(200, 50, num_customers)
-lifetime_value = acquisition_cost * np.random.uniform(1.5, 5.0, num_customers)
+# Create a DataFrame
+df = pd.DataFrame({"Product": products, "Performance": performance})
 
-# Create DataFrame
-data = pd.DataFrame({
-    "Acquisition_Cost": acquisition_cost,
-    "Lifetime_Value": lifetime_value
-})
+# Set figure size for 512x512 output
+plt.figure(figsize=(8, 8))
 
-# Create scatterplot
-fig = plt.figure(figsize=(8, 8), dpi=64)  # 8x8 inches × 64 dpi = 512x512 px
-ax = sns.scatterplot(
-    x="Acquisition_Cost",
-    y="Lifetime_Value",
-    data=data,
-    color="royalblue",
-    s=100,
-    edgecolor="k"
+# Create barplot
+sns.barplot(
+    x="Product",
+    y="Performance",
+    data=df,
+    palette="Blues_d",
+    edgecolor="black"
 )
 
-# Add title and labels
-ax.set_title("Customer Lifetime Value vs Acquisition Cost")
-ax.set_xlabel("Acquisition Cost ($)")
-ax.set_ylabel("Customer Lifetime Value ($)")
+# Style the chart
+plt.title("Product Performance Insights", fontsize=16, fontweight="bold")
+plt.xlabel("Products", fontsize=12)
+plt.ylabel("Performance Score", fontsize=12)
+plt.xticks(rotation=30, fontsize=10)
+plt.yticks(fontsize=10)
+plt.grid(axis="y", linestyle="--", alpha=0.7)
 
-# Adjust layout to avoid cropping
+# Save chart as PNG (512x512 with dpi=64)
 plt.tight_layout()
+plt.savefig("chart.png", dpi=64, bbox_inches="tight")
 
-# Save figure exactly 512x512 pixels
-fig.savefig("chart.png", dpi=64)
-plt.close()
+# Show plot
+plt.show()
+
+
+
